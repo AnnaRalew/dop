@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
+import axios from "axios";
 
 
 type PropsType=
@@ -13,30 +14,50 @@ type PropsType=
 function App() {
     const [todos, setTodos] = useState<Array<PropsType>>([])
 
+    const getData = () => {
+        axios.get('https://jsonplaceholder.typicode.com/todos')
+            .then((res) => setTodos(res.data))
+    }
+
     useEffect(()=>{
-        fetch('https://jsonplaceholder.typicode.com/todos')
-            .then(response => response.json())
-            .then(json => setTodos(json))
+        getData()
     },[])
 
-    const onClickHandler = () => {
+    const onClickCleanHandler = () => {
         setTodos([])
     }
+    const onClickShowHandler = () => {
+        getData()
+    }
+
+    const mapTodos = todos.map(el => {
+            return (
+                <li>
+                    <span>{el.id} - </span>
+                    <span>{el.title}</span>
+                    <span>{el.completed}</span>
+                </li>
+            )
+        })
 
     return (
         <div className="App">
-            <button onClick={onClickHandler}>CLEAN POSTS</button>
-            <ul>
-                {todos.map(el => {
-                    return (
-                        <li>
-                            <span>{el.id} - </span>
-                            <span>{el.title}</span>
-                            <span>{el.completed}</span>
-                        </li>
-                    )
-                })}
+            <div>
+                <button onClick={onClickCleanHandler}>CLEAN POSTS</button>
+                <button onClick={onClickShowHandler}>SHOW POSTS</button>
+            </div>
 
+            <ul>
+                {/*{todos.map(el => {*/}
+                {/*    return (*/}
+                {/*        <li>*/}
+                {/*            <span>{el.id} - </span>*/}
+                {/*            <span>{el.title}</span>*/}
+                {/*            <span>{el.completed}</span>*/}
+                {/*        </li>*/}
+                {/*    )*/}
+                {/*})}*/}
+                {mapTodos}
             </ul>
 
 
