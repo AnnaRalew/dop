@@ -1,5 +1,6 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
 import {FilterValuesType, TasksType} from '../App';
+import {UniversalButton} from "./UniversalButton";
 
 
 
@@ -34,10 +35,11 @@ export function Todolist(props: PropsType) {
 
     return <div>
         <h3> {props.title}
-            <button onClick={() => {
-                props.removeTodolist(props.id)
-            }}>x
-            </button>
+            {/*<button onClick={() => {*/}
+            {/*    props.removeTodolist(props.id)*/}
+            {/*}}>x*/}
+            {/*</button>*/}
+            <UniversalButton onClick={()=>props.removeTodolist(props.id)}/>
         </h3>
         <div>
             <input value={title}

@@ -6,7 +6,7 @@ type ButtonPropsType = {
     onClick: () => void
     color?: string
     disabled?: boolean
-    children: React.ReactNode
+    children ?: React.ReactNode
 }
 & ButtonHTMLAttributes<HTMLButtonElement>
 export const Button = ({name, className, onClick, children, disabled, color, ...rest } : ButtonPropsType) => {
