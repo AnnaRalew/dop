@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import './App.css';
 import {Todolist} from './components/Todolist';
 import {v1} from 'uuid';
+import {Button} from "./components/Button";
+import {UniversalButton} from "./components/UniversalButton";
 
 
 type ObjectType = {
@@ -180,7 +182,9 @@ function App() {
     return (
         <div className="App">
             <div>
-                <button>X</button>
+                <UniversalButton
+                    name={"X"}
+                    onClick={removeAllTodolists}/>
             </div>
 
             {
@@ -207,7 +211,7 @@ function App() {
                         changeTaskStatus={changeStatus}
                         filter={tl.filter}
                         removeTodolist={removeTodolist}
-                        // removeAllTodolist={removeAllTodolist}
+                        removeAllTasksInOneTodo={removeAllTasksInOneTodo}
                     />
 
 

@@ -62,6 +62,9 @@
     cursor: default;
 }
 
+.active-filter {
+    background-color: aqua;
+}
 
 
 
